@@ -25,10 +25,9 @@ namespace Fuzzy
             FuzzyOne();
             virtual ~FuzzyOne();
             void setOutputLVar(LVar *var) {pOutLVar = var;}
-            void addInputLVar(int index, InputLVar *var) {pLVars[index] = var;}
+            void setInputLVar(int index, InputLVar *var) {pLVars[index] = var;}
             InputLVar *operator[](int index) {return pLVars[index];}
             const LVar *out() const {return pOutLVar;}
-            void defuzzify();
             void setRule(Rule rule) {pRule = rule;}
             void run();
         protected:

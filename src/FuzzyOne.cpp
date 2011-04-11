@@ -16,18 +16,13 @@ Fuzzy::FuzzyOne::~FuzzyOne()
 }
 
 void
-Fuzzy::FuzzyOne::defuzzify()
-{
-    if (!pOutLVar)
-        return;
-    pOutLVar->defuzzify();
-}
-
-void
 Fuzzy::FuzzyOne::run()
 {
     if (pRule && pOutLVar)
+    {
         pRule(pOutLVar, pLVars);
+        pOutLVar->defuzzify();
+    }
 }
 
 Fuzzy::FuzzyType::FuzzyType(double arg)
