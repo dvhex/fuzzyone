@@ -1,17 +1,24 @@
 #include "Term.h"
 #include "Exception.h"
 
-Fuzzy::TriangularTerm::TriangularTerm(FuzzyType a, FuzzyType b, FuzzyType c)
+Fuzzy::BaseTerm::BaseTerm(double a, double b)
 {
-    if (a > b || b > c)
+    if (a > b)
         throw Exception("Error parameters");
     pA = a;
     pB = b;
+}
+
+Fuzzy::TriangularTerm::TriangularTerm(double a, double b, double c)
+    : BaseTerm(a,b)
+{
+    if (b > c)
+        throw Exception("Error parameters");
     pC = c;
 }
 
 Fuzzy::FuzzyType
-Fuzzy::TriangularTerm::Calc(FuzzyType x)
+Fuzzy::TriangularTerm::Calc(double x)
 {
     if (x <= pA || x > pC)
         return 0;
@@ -21,17 +28,14 @@ Fuzzy::TriangularTerm::Calc(FuzzyType x)
         return (x - pC) / (pB - pC);
 }
 
-Fuzzy::ShoulderTerm::ShoulderTerm(FuzzyType a, FuzzyType b, bool left)
+Fuzzy::ShoulderTerm::ShoulderTerm(double a, double b, bool left)
+    : BaseTerm(a,b)
 {
-    if (a > b)
-        throw Exception("Error parameters");
-    pA = a;
-    pB = b;
     pLeft = left;
 }
 
 Fuzzy::FuzzyType
-Fuzzy::ShoulderTerm::Calc(FuzzyType x)
+Fuzzy::ShoulderTerm::Calc(double x)
 {
     if (x <= pA)
     {

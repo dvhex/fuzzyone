@@ -1,7 +1,7 @@
 GXX=g++
 INCLUDES=-Iinclude
 GXXFLAGS=-c -Wall $(INCLUDES)
-OBJECTS=FuzzyOne.o Term.o
+OBJECTS=FuzzyOne.o Term.o LVar.o
 LIB=fuzzyone
 PROGRAM=lib$(LIB).so
 
@@ -26,3 +26,5 @@ test: test.o
 
 clean:
 	rm *.o
+
+rebuild: clean all
