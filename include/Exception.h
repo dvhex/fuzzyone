@@ -10,7 +10,7 @@ namespace Fuzzy
     class Exception: std::exception
     {
         public:
-            Exception(const string &mes) throw() {message = mes;}
+            Exception(const std::string &mes) throw() {message = mes;}
             Exception(const char *mes) throw() {message = mes;}
             ~Exception() throw() {}
             const char *what() const throw() {return message.c_str();}
@@ -18,6 +18,6 @@ namespace Fuzzy
             std::string message;
     };
 
-}
+};
 
 #endif //FUZZY_ONE_EXCEPT_H

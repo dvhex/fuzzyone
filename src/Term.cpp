@@ -10,8 +10,8 @@ Fuzzy::TriangularTerm::TriangularTerm(FuzzyType a, FuzzyType b, FuzzyType c)
     pC = c;
 }
 
-FuzzyType
-Fuzzy::TriangularTerm::Get(FuzzyType x)
+Fuzzy::FuzzyType
+Fuzzy::TriangularTerm::Calc(FuzzyType x)
 {
     if (x <= pA || x > pC)
         return 0;
@@ -30,19 +30,23 @@ Fuzzy::ShoulderTerm::ShoulderTerm(FuzzyType a, FuzzyType b, bool left)
     pLeft = left;
 }
 
-FuzzyType
-Fuzzy::ShoulderTerm::Get(FuzzyType x)
+Fuzzy::FuzzyType
+Fuzzy::ShoulderTerm::Calc(FuzzyType x)
 {
     if (x <= pA)
+    {
         if (!pLeft)
             return 0;
         else
             return 1;
+    }
     if (x > pB)
+    {
         if (pLeft)
             return 0;
         else
             return 1;
+    }
     if (pLeft)
         return (x - pB) / (pA - pB);
     else
