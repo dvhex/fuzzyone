@@ -27,15 +27,22 @@ namespace Fuzzy
      * Также в дальнейшем все классы должны поддерживать модификаторы. Сами
      * модификаторы тоже должны быть реализованы в виде классов.
      */
+    typedef std::map<int, Term*> TermsMap;
     
     class LVar
     {
         public:
+            double Value;
             virtual ~LVar();
             virtual void setTerm(int index, Term *term) {pTerms[index] = term;}
             FuzzyType &operator[](int index);
+            const TermsMap &Terms() const {return pTerms;}
+            void zero();
+            void defuzzify();
         protected:
-            std::map<int, Term*> pTerms;
+            TermsMap pTerms;
+        private:
+            InputLVar operator=(const InputLVar &src);
     };
 
     class InputLVar: public LVar
@@ -43,8 +50,6 @@ namespace Fuzzy
         public:
             const InputLVar &operator=(double x) {fuzzify(x); return *this;}
             void fuzzify(double x);
-        private:
-            InputLVar operator=(const InputLVar &src);
     };
 
     class OutputLVar: public LVar

@@ -18,7 +18,7 @@ Fuzzy::TriangularTerm::TriangularTerm(double a, double b, double c)
 }
 
 Fuzzy::FuzzyType
-Fuzzy::TriangularTerm::Calc(double x)
+Fuzzy::TriangularTerm::Calc(double x) const
 {
     if (x <= pA || x > pC)
         return 0;
@@ -35,7 +35,7 @@ Fuzzy::ShoulderTerm::ShoulderTerm(double a, double b, bool left)
 }
 
 Fuzzy::FuzzyType
-Fuzzy::ShoulderTerm::Calc(double x)
+Fuzzy::ShoulderTerm::Calc(double x) const
 {
     if (x <= pA)
     {

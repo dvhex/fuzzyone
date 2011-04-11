@@ -2,6 +2,7 @@
 #define FUZZYONE_H
 
 #include <iostream>
+#include <map>
 
 /*
  * В этом файле нужно реализовать движок для операций с лингвистическими
@@ -11,13 +12,29 @@
 
 namespace Fuzzy
 {
+    class LVar;
+    class InputLVar;
+
+    typedef std::map<int,InputLVar*> InputLVarMap;
+
+    typedef void (*Rule)(LVar*, const InputLVarMap&);
 
     class FuzzyOne
     {
         public:
             FuzzyOne();
             virtual ~FuzzyOne();
+            void setOutputLVar(LVar *var) {pOutLVar = var;}
+            void addInputLVar(int index, InputLVar *var) {pLVars[index] = var;}
+            InputLVar *operator[](int index) {return pLVars[index];}
+            const LVar *out() const {return pOutLVar;}
+            void defuzzify();
+            void setRule(Rule rule) {pRule = rule;}
+            void run();
         protected:
+            Rule pRule;
+            LVar* pOutLVar;
+            InputLVarMap pLVars;
         private:
     };
 

@@ -16,7 +16,8 @@ namespace Fuzzy
             virtual ~Term() {}
             FuzzyType Set(double x) {return Value = Calc(x);}
             FuzzyType Get() {return Value;}
-            virtual FuzzyType Calc(double x) = 0;
+            FuzzyType operator()(double x) const {return Calc(x);}
+            virtual FuzzyType Calc(double x) const = 0;
             virtual double min() const = 0;
             virtual double max() const = 0;
     };
@@ -47,7 +48,7 @@ namespace Fuzzy
             ~TriangularTerm() {}
             void C(double value) {pC = value;}
             double C() const {return pC;}
-            FuzzyType Calc(double x);
+            FuzzyType Calc(double x) const;
             double max() const {return pC;}
     };
 
@@ -62,7 +63,7 @@ namespace Fuzzy
             ~ShoulderTerm() {};
             void Left(bool left) {pLeft = left;}
             bool Left() const {return pLeft;}
-            FuzzyType Calc(double x);
+            FuzzyType Calc(double x) const;
     };
 
 };

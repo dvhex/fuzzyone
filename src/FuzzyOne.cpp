@@ -1,4 +1,6 @@
 #include "FuzzyOne.h"
+#include "LVar.h"
+#include <cmath>
 
 Fuzzy::FuzzyOne::FuzzyOne()
 {
@@ -7,7 +9,25 @@ Fuzzy::FuzzyOne::FuzzyOne()
 
 Fuzzy::FuzzyOne::~FuzzyOne()
 {
-    //dtor
+    for (std::map<int,InputLVar*>::iterator iter = pLVars.begin(),
+            end = pLVars.end(); iter != end; ++iter)
+        delete iter->second;
+    delete pOutLVar;
+}
+
+void
+Fuzzy::FuzzyOne::defuzzify()
+{
+    if (!pOutLVar)
+        return;
+    pOutLVar->defuzzify();
+}
+
+void
+Fuzzy::FuzzyOne::run()
+{
+    if (pRule && pOutLVar)
+        pRule(pOutLVar, pLVars);
 }
 
 Fuzzy::FuzzyType::FuzzyType(double arg)
