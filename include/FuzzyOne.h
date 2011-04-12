@@ -13,11 +13,10 @@
 namespace Fuzzy
 {
     class LVar;
-    class InputLVar;
 
-    typedef std::map<int,InputLVar*> InputLVarMap;
+    typedef std::map<int,LVar*> LVarMap;
 
-    typedef void (*Rule)(LVar*, const InputLVarMap&);
+    typedef void (*Rule)(LVar*, LVarMap&);
 
     class FuzzyOne
     {
@@ -25,15 +24,16 @@ namespace Fuzzy
             FuzzyOne();
             virtual ~FuzzyOne();
             void setOutputLVar(LVar *var) {pOutLVar = var;}
-            void setInputLVar(int index, InputLVar *var) {pLVars[index] = var;}
-            InputLVar *operator[](int index) {return pLVars[index];}
+            //TODO: сделать несколько выходов
+            void setInputLVar(int index, LVar *var) {pLVars[index] = var;}
+            LVar *operator[](int index) {return pLVars[index];}
             const LVar *out() const {return pOutLVar;}
             void setRule(Rule rule) {pRule = rule;}
             void run();
         protected:
             Rule pRule;
             LVar* pOutLVar;
-            InputLVarMap pLVars;
+            LVarMap pLVars;
         private:
     };
 

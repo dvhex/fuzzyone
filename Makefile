@@ -16,8 +16,8 @@ release:
 $(PROGRAM): $(OBJECTS)
 	$(GXX) $(LFLAGS) --shared $(OBJECTS) -o $@
 
-test: test.o
-	$(GXX) -L. -l$(LIB) $< -Wl,-rpath,. -o test
+test: src/test.cpp
+	$(GXX) -Wall $(INCLUDES) -g -L. -l$(LIB) $< -Wl,-rpath,. -o test
 
 %.o: src/%.cpp
 	$(GXX) $(GXXFLAGS) $<

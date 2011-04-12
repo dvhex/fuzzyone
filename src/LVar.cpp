@@ -62,7 +62,7 @@ Fuzzy::LVar::defuzzify()
 }
 
 void
-Fuzzy::InputLVar::fuzzify(double x)
+Fuzzy::LVar::fuzzify(double x)
 {
     Value = x;
     for (map<int,Term*>::iterator iter = pTerms.begin(),

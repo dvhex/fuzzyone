@@ -9,7 +9,7 @@ Fuzzy::FuzzyOne::FuzzyOne()
 
 Fuzzy::FuzzyOne::~FuzzyOne()
 {
-    for (std::map<int,InputLVar*>::iterator iter = pLVars.begin(),
+    for (std::map<int,LVar*>::iterator iter = pLVars.begin(),
             end = pLVars.end(); iter != end; ++iter)
         delete iter->second;
     delete pOutLVar;
@@ -20,6 +20,7 @@ Fuzzy::FuzzyOne::run()
 {
     if (pRule && pOutLVar)
     {
+        pOutLVar->zero();
         pRule(pOutLVar, pLVars);
         pOutLVar->defuzzify();
     }

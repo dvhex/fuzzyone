@@ -7,9 +7,6 @@
 namespace Fuzzy
 {
 
-    /*
-     * TODO: возможно следует всё объединить в один класс
-     */
     typedef std::map<int, Term*> TermsMap;
     
     class LVar
@@ -19,26 +16,15 @@ namespace Fuzzy
             virtual ~LVar();
             virtual void setTerm(int index, Term *term) {pTerms[index] = term;}
             FuzzyType &operator[](int index);
+            const LVar &operator=(double x) {fuzzify(x); return *this;}
             const TermsMap &Terms() const {return pTerms;}
             void zero();
+            void fuzzify(double x);
             void defuzzify();
         protected:
             TermsMap pTerms;
         private:
-            InputLVar operator=(const InputLVar &src);
-    };
-
-    class InputLVar: public LVar
-    {
-        public:
-            const InputLVar &operator=(double x) {fuzzify(x); return *this;}
-            void fuzzify(double x);
-    };
-
-    class OutputLVar: public LVar
-    {
-        public:
-            FuzzyType deFuzzify();
+            LVar operator=(const LVar &src);
     };
 };
 
