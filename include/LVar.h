@@ -20,7 +20,7 @@ namespace Fuzzy
             const TermsMap &Terms() const {return pTerms;}
             void zero();
             void fuzzify(double x);
-            void defuzzify();
+            void defuzzify(unsigned resolution = 1000);
         protected:
             TermsMap pTerms;
         private:

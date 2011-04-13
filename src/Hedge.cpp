@@ -1,5 +1,12 @@
 #include "Hedge.h"
+#include "Term.h"
 #include <cmath>
+
+Fuzzy::FuzzyType
+Fuzzy::Hedge::operator()(const Term *term, double x) const
+{
+    return operator()(term->Calc(x));
+}
 
 Fuzzy::FuzzyType
 Fuzzy::HedgeVery::operator()(FuzzyType v) const

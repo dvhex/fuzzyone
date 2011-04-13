@@ -32,7 +32,7 @@ Fuzzy::LVar::zero()
 }
 
 void
-Fuzzy::LVar::defuzzify()
+Fuzzy::LVar::defuzzify(unsigned resolution)
 {
     double min = INFINITY;
     double max = -min;
@@ -44,7 +44,7 @@ Fuzzy::LVar::defuzzify()
         if (iter->second->max() > max)
             max = iter->second->max();
     }
-    double h = (max - min) / 1000;
+    double h = (max - min) / resolution;
     double a = 0, b = 0, x = min;
     while (x <= max)
     {

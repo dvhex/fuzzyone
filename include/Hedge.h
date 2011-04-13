@@ -2,15 +2,22 @@
 #define HEDGE_H
 
 #include "FuzzyOne.h"
-#include "Term.h"
 
 namespace Fuzzy
 {
+    class Term;
+
     class Hedge
     {
         public:
-            virtual FuzzyType operator()(const Term *term, double x) const {return operator()(term->Calc(x));}
+            virtual FuzzyType operator()(const Term *term, double x) const;
             virtual FuzzyType operator()(FuzzyType v) const = 0;
+    };
+
+    class HedgeNone: public Hedge
+    {
+        public:
+            FuzzyType operator()(FuzzyType v) const {return v;}
     };
 
     class HedgeNot: public Hedge
