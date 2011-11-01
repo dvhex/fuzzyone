@@ -1,5 +1,5 @@
 GXX=g++
-INCLUDES=-Iinclude
+INCLUDES=-Iinclude/fuzzyone
 GXXFLAGS=-c -Wall $(INCLUDES)
 OBJECTS=FuzzyOne.o Term.o LVar.o Hedge.o
 LIB=fuzzyone
