@@ -27,4 +27,8 @@ test: src/test.cpp
 clean:
 	rm *.o
 
+install: release
+	cp -r include/fuzzyone /usr/local/include/
+	install -m 644 $(PROGRAM) /usr/local/lib/
+
 rebuild: clean all
