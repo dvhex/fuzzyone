@@ -1,0 +1,12 @@
+./main.cpp
+./src/LVar.cpp
+./src/Hedge.cpp
+./src/Term.cpp
+./src/FuzzyOne.cpp
+./src/test.cpp
+./include/fuzzyone/LVar.h
+./include/fuzzyone/Term.h
+./include/fuzzyone/Exception.h
+./include/fuzzyone/Hedge.h
+./include/fuzzyone/FuzzyOne.h
+CMakeLists.txt
