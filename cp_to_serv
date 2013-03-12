@@ -1,9 +1,0 @@
-#!/bin/bash
-name=src.tar.bz2
-cryptname=src.tar.bz2.aes
-tar -cvjf $name -T files
-openssl enc -in $name -out $cryptname -aes-128-cbc
-scp $cryptname vdabarov@mydigitrade.com:/home/vdabarov/mdt_stat/
-scp $cryptname root@test.mydigitrade.com:/usr/local/lib/mdt_stat/
-rm -vf $name $cryptname
-
