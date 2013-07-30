@@ -34,6 +34,14 @@ void testTerm()
     cout << "Shoulder term:" << endl;
     for (int i=0; i<=10; i++)
         cout << i << '\t' << s.Calc(i) << endl;
+    STerm S(2, 8);
+    cout << "S term:" << endl;
+    for (int i=0; i<=10; i++)
+        cout << i << '\t' << S.Calc(i) << endl;
+    PTerm P(0, 5, 10);
+    cout << "P term:" << endl;
+    for (int i=0; i<=10; i++)
+        cout << i << '\t' << P.Calc(i) << endl;
     cout << "Over:" << endl;
     HedgeVery v;
     for (int i=0; i<=10; i++)
@@ -194,9 +202,9 @@ namespace rating
 
 int main()
 {
-    //testFuzzyType();
-    //testTerm();
-    //testLVar();
+    testFuzzyType();
+    testTerm();
+    testLVar();
     //testFuzzyOne();
     rating::testRating();
     return 0;

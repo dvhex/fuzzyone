@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "Term.h"
 #include "Exception.h"
 
@@ -55,4 +57,34 @@ Fuzzy::ShoulderTerm::Calc(double x) const
         return (x - pB) / (pA - pB);
     else
         return (x - pA) / (pB - pA);
+}
+
+Fuzzy::FuzzyType
+Fuzzy::STerm::Calc(double x) const
+{
+    double value;
+    double c = (pA + pB) / 2;
+    if (x <= pA)
+        value = 0;
+    else if (x <= c)
+        value = 2.0 * std::pow((x - pA) / (pB - pA), 2);
+    else if (x <= pB)
+        value = 1.0 - 2.0 * std::pow((x - pB) / (pB - pA), 2);
+    else
+        value = 1.0;
+    if (pLeft)
+        return 1.0 - value;
+    else
+        return value;
+}
+
+Fuzzy::FuzzyType
+Fuzzy::PTerm::Calc(double x) const
+{
+    STerm leftS(pA, pB, false);
+    STerm rightS(pB, pC, true);
+    if (x < pB)
+        return leftS.Calc(x);
+    else
+        return rightS.Calc(x);
 }

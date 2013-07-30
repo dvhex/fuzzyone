@@ -73,6 +73,30 @@ namespace Fuzzy
             bool Left() const {return pLeft;}
             FuzzyType Calc(double x) const;
     };
+    
+    /*
+     * Терм S-функция, подобно ShoulderTerm, только с плавным переходом
+     */
+    class STerm: public ShoulderTerm
+    {
+    public:
+        STerm(double a, double b, bool left = true): ShoulderTerm(a, b, left) {}
+        STerm(const STerm &src): ShoulderTerm(src) {}
+        ~STerm() {};
+        FuzzyType Calc(double x) const;
+    };
+    
+    /*
+     * Тем Пи-функция, подобно TriangularTerm, только плавная
+     */
+    class PTerm: public TriangularTerm
+    {
+    public:
+        PTerm(double a, double b, double c): TriangularTerm(a, b, c) {}
+        PTerm(const PTerm &src): TriangularTerm(src) {}
+        ~PTerm() {}
+        FuzzyType Calc(double x) const;
+    };
 
     class HedgeTerm: public Term
     {
